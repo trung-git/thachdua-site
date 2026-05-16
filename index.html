@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguyễn Thạch Thảo — Movement & Somatic Instructor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage: #7C9070;
+    --sage-light: #B5C9AD;
+    --sage-pale: #EBF0E8;
+    --cream: #FAF6EF;
+    --ivory: #F3EDE3;
+    --terra: #C4825A;
+    --terra-light: #E8C4A8;
+    --brown: #4A3728;
+    --text: #2E2A24;
+    --muted: #7A6F63;
+    --border: rgba(124,144,112,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5vw;
+    background: rgba(250,246,239,0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  nav ul a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--sage); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 5vw 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -10vw;
+    top: -10vh;
+    width: 70vw;
+    height: 110vh;
+    background: var(--ivory);
+    border-radius: 40% 0 0 40%;
+    z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--terra-light);
+    border-radius: 2rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage);
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .hero-desc {
+    font-size: 0.92rem;
+    color: var(--muted);
+    max-width: 420px;
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--sage);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--brown); transform: translateY(-1px); }
+  .btn-outline {
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--sage); transform: translateY(-1px); }
+
+  .hero-visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .hero-circle {
+    width: 340px;
+    height: 420px;
+    background: var(--sage-pale);
+    border-radius: 50% 50% 45% 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    font-weight: 300;
+    color: var(--sage);
+    opacity: 0.3;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: -1rem;
+    right: 1rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius, 1rem);
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    font-size: 0.8rem;
+  }
+  .hero-badge strong {
+    display: block;
+    font-size: 1.4rem;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--terra);
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--sage);
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* LEAF DECORATIONS */
+  .leaf {
+    position: absolute;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* SECTION COMMONS */
+  section {
+    padding: 6rem 5vw;
+    position: relative;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--sage); }
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--sage);
+    margin-bottom: 2rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--ivory); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.4;
+    border-left: 2px solid var(--sage-light);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .about-text {
+    font-size: 0.93rem;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sage);
+    border: 1px solid var(--sage-light);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+  }
+  .cert-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+  .cert-badge {
+    width: 50px;
+    height: 50px;
+    background: var(--sage-pale);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .cert-badge svg { width: 24px; height: 24px; color: var(--sage); }
+  .cert-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .cert-card p { font-size: 0.82rem; color: var(--muted); }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-top: 3rem;
+  }
+  .service-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--sage-light);
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  }
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--sage-pale);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
+  .service-highlight {
+    margin-top: 1.2rem;
+    padding: 0.8rem 1rem;
+    background: var(--sage-pale);
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--sage);
+    font-weight: 500;
+  }
+  .service-card.featured::before { background: var(--terra-light); }
+
+  /* STRENGTHS */
+  .strengths { background: var(--ivory); }
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+  .strength-item {
+    padding: 1.8rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: white;
+  }
+  .strength-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--sage-light);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .strength-item h4 {
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .strength-item p { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
+
+  /* JOURNEY */
+  .journey-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+    align-items: start;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--sage);
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .timeline-dot::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 4px;
+    width: 2px;
+    height: 3rem;
+    background: var(--border);
+  }
+  .timeline-item:last-child .timeline-dot::after { display: none; }
+  .timeline-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 0.3rem;
+  }
+  .timeline-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-sub { font-size: 0.82rem; color: var(--muted); }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .metric-card {
+    background: var(--sage-pale);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .metric-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--sage);
+    line-height: 1;
+  }
+  .metric-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    line-height: 1.4;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--text); color: white; }
+  .contact .section-title { color: white; }
+  .contact .section-title em { color: var(--sage-light); }
+  .contact .divider { background: var(--sage-light); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+    align-items: center;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-row:hover { color: var(--sage-light); }
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .social-links { display: flex; gap: 1rem; margin-top: 2rem; }
+  .social-link {
+    width: 44px; height: 44px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .social-link:hover {
+    border-color: var(--sage-light);
+    color: var(--sage-light);
+    background: rgba(181,201,173,0.1);
+  }
+  .contact-cta {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+  }
+  .contact-cta h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-style: italic;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .contact-cta p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .btn-white {
+    display: inline-block;
+    background: white;
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .btn-white:hover { background: var(--cream); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+  }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  footer a:hover { color: var(--sage-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-text > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-text > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-text > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-text > *:nth-child(5) { animation-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding-top: 5rem; }
+    .hero::before { display: none; }
+    .hero-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .journey-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Thạch Thảo</a>
+  <ul>
+    <li><a href="#about">Giới thiệu</a></li>
+    <li><a href="#services">Dịch vụ</a></li>
+    <li><a href="#strengths">Thế mạnh</a></li>
+    <li><a href="#journey">Hành trình</a></li>
+    <li><a href="#contact">Liên hệ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-label">Yoga · Movement · Somatic</span>
+    <h1>Nguyễn<br><em>Thạch Thảo</em></h1>
+    <p class="hero-sub">Movement & Somatic Instructor</p>
+    <p class="hero-desc">
+      Với định hướng tập luyện an toàn và hiệu quả, em tập trung sâu vào kỹ thuật căn chỉnh, kiểm soát chuyển động và kết nối hơi thở — giúp học viên <em>khỏe hơn, linh hoạt hơn và bền vững hơn.</em>
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Đăng ký buổi học</a>
+      <a href="#about" class="btn-outline">Tìm hiểu thêm</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div style="position: relative;">
+      <div class="hero-circle">
+        <span class="hero-initials">TT</span>
+      </div>
+      <div class="hero-badge" style="border-radius:1rem;">
+        <strong>70%</strong>
+        tái đăng ký
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">200h</div>
+        <div class="stat-label">YTT Cert</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1:6</div>
+        <div class="stat-label">Max group</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">–30%</div>
+        <div class="stat-label">Đau mỏi sau 10 buổi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">Về tôi</p>
+      <h2 class="section-title">Khỏe · Đẹp · <em>Bền vững</em></h2>
+      <div class="divider"></div>
+      <blockquote class="about-quote">
+        "Cơ thể mỗi người đều có câu chuyện riêng — tôi ở đây để lắng nghe và đồng hành."
+      </blockquote>
+      <p class="about-text">
+        Thạch Thảo là Yoga & Movement Instructor với chuyên môn sâu về giải phẫu học ứng dụng và somatic movement. Cách tiếp cận tập luyện của em đặt alignment, breath control và kết nối cơ thể — tâm trí lên hàng đầu.
+      </p>
+      <p class="about-text">
+        Em giảng dạy bằng cả <strong>tiếng Việt và tiếng Anh</strong>, chào đón học viên trong nước lẫn học viên nước ngoài tại TP.HCM. Mỗi buổi học được thiết kế riêng phù hợp với cơ thể và mục tiêu của từng người.
+      </p>
+      <div class="tags">
+        <span class="tag">Alignment</span>
+        <span class="tag">Breath Work</span>
+        <span class="tag">Somatic</span>
+        <span class="tag">Anatomy</span>
+        <span class="tag">English Instruction</span>
+        <span class="tag">Injury Prevention</span>
+      </div>
+    </div>
+    <div>
+      <div class="cert-card">
+        <div class="cert-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--sage);">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+        </div>
+        <h4>200-Hour Yoga Teacher Training Certificate</h4>
+        <p>by Yoga Alliance · Chứng nhận quốc tế</p>
+      </div>
+      <div class="cert-card" style="margin-top:1rem;">
+        <div class="cert-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--terra);">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <h4>Cử nhân Marketing</h4>
+        <p>Đại học Tôn Đức Thắng · 2024</p>
+      </div>
+      <div style="margin-top:1.5rem; padding:1.5rem; background: var(--sage-pale); border-radius:1rem;">
+        <p style="font-size:0.84rem; color: var(--sage); font-style:italic; line-height:1.8;">
+          "Ngoài yoga, Thảo còn đam mê Pole Dance và Cheerleading — hiểu sâu về cơ thể từ nhiều góc độ vận động khác nhau."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-label">Dịch vụ</p>
+    <h2 class="section-title">Hình thức <em>tập luyện</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card featured">
+      <div class="service-icon">🧘</div>
+      <h3>Private 1:1</h3>
+      <p>Buổi học hoàn toàn cá nhân hóa — lộ trình, cường độ và mục tiêu được thiết kế riêng cho bạn. Phù hợp với người mới bắt đầu, phục hồi chấn thương hoặc muốn đi sâu vào kỹ thuật.</p>
+      <div class="service-highlight">✦ Lộ trình cá nhân hóa 100%</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌿</div>
+      <h3>Small Group 1:6</h3>
+      <p>Lớp nhỏ tối đa 6 người — năng lượng nhóm kết hợp sự chú ý cá nhân. Không khí ấm áp, hỗ trợ lẫn nhau và cùng nhau phát triển trên thảm tập.</p>
+      <div class="service-highlight">✦ Tối đa 6 học viên / lớp</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>English Instruction</h3>
+      <p>Giảng dạy hoàn toàn bằng tiếng Anh — hướng dẫn kỹ thuật, alignment cues và feedback rõ ràng. Thân thiện với học viên quốc tế tại TP.HCM.</p>
+      <div class="service-highlight">✦ Dành cho expats & người nước ngoài</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📍</div>
+      <h3>Linh hoạt địa điểm</h3>
+      <p>Tại studio, tại nhà học viên, hoặc ngoài trời. Em mang đến trải nghiệm tập luyện thoải mái nhất trong không gian bạn chọn.</p>
+      <div class="service-highlight">✦ TP. Hồ Chí Minh</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section class="strengths" id="strengths">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-label">Thế mạnh</p>
+    <h2 class="section-title">Điều em <em>mang lại</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="strengths-grid">
+    <div class="strength-item">
+      <div class="strength-num">01</div>
+      <h4>Movement & Somatic</h4>
+      <p>Am hiểu giải phẫu học ứng dụng, kiểm soát chuyển động và nhịp thở phù hợp với từng cơ thể, từng giai đoạn sức khỏe.</p>
+    </div>
+    <div class="strength-item">
+      <div class="strength-num">02</div>
+      <h4>Alignment Precision</h4>
+      <p>Căn chỉnh định tuyến chuẩn xác trong từng tư thế — giảm thiểu chấn thương và tối ưu hiệu quả của từng buổi tập.</p>
+    </div>
+    <div class="strength-item">
+      <div class="strength-num">03</div>
+      <h4>Personalized Journey</h4>
+      <p>Quản lý thời gian và xây dựng lộ trình cá nhân hóa dựa trên sự thấu cảm — lắng nghe trước, hướng dẫn sau.</p>
+    </div>
+    <div class="strength-item">
+      <div class="strength-num">04</div>
+      <h4>Kết nối & Sáng tạo</h4>
+      <p>Giao tiếp thân thiện, năng lượng tích cực và khả năng chụp ảnh lưu giữ hành trình của học viên — mỗi buổi tập là một kỷ niệm.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-label">Hành trình</p>
+    <h2 class="section-title">Kinh nghiệm & <em>Thành tích</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="journey-grid">
+    <div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">06.2025 — Hiện tại</div>
+          <div class="timeline-title">Yoga Instructor</div>
+          <div class="timeline-sub">Private 1:1 & Small Group · TP.HCM</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">2024</div>
+          <div class="timeline-title">200h YTT Certificate</div>
+          <div class="timeline-sub">Yoga Alliance · Chứng nhận quốc tế</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">2022 — 2025</div>
+          <div class="timeline-title">Marketing Executive (Team Lead)</div>
+          <div class="timeline-sub">Wellness Brand · Tăng 20% tương tác cảm xúc</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">2024</div>
+          <div class="timeline-title">Cử nhân Marketing</div>
+          <div class="timeline-sub">Đại học Tôn Đức Thắng</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-val">70%</div>
+          <div class="metric-label">Tỷ lệ học viên tái đăng ký</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">–30%</div>
+          <div class="metric-label">Đau mỏi hệ vận động sau 10 buổi</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">+20%</div>
+          <div class="metric-label">Tương tác cảm xúc thương hiệu</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">0</div>
+          <div class="metric-label">Chấn thương trong quá trình dạy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-label" style="color: var(--sage-light);">Liên hệ</p>
+    <h2 class="section-title">Bắt đầu <em>hành trình</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info">
+        <a href="tel:0703786631" class="contact-row">
+          <div class="contact-icon">📞</div>
+          <span>0703 786 631</span>
+        </a>
+        <a href="mailto:thachdua29@gmail.com" class="contact-row">
+          <div class="contact-icon">✉</div>
+          <span>thachdua29@gmail.com</span>
+        </a>
+        <a href="https://www.facebook.com/dua.thach.2906/" target="_blank" class="contact-row">
+          <div class="contact-icon">f</div>
+          <span>Facebook: dua.thach.2906</span>
+        </a>
+        <a href="https://www.instagram.com/thach_dua/" target="_blank" class="contact-row">
+          <div class="contact-icon">ig</div>
+          <span>Instagram: @thach_dua</span>
+        </a>
+        <a href="https://www.threads.com/@thach_dua" target="_blank" class="contact-row">
+          <div class="contact-icon">t</div>
+          <span>Threads: @thach_dua</span>
+        </a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/dua.thach.2906/" target="_blank" class="social-link" title="Facebook">FB</a>
+        <a href="https://www.instagram.com/thach_dua/" target="_blank" class="social-link" title="Instagram">IG</a>
+        <a href="https://www.threads.com/@thach_dua" target="_blank" class="social-link" title="Threads">TH</a>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <h3>"Hành trình ngàn dặm bắt đầu từ một hơi thở."</h3>
+      <p>Dù bạn mới bắt đầu, đang phục hồi chấn thương, hay muốn đi sâu hơn vào thực hành — em ở đây để đồng hành cùng bạn. Liên hệ để đặt buổi học thử miễn phí.</p>
+      <a href="mailto:thachdua29@gmail.com" class="btn-white">Đặt buổi học thử →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Nguyễn Thạch Thảo — Movement & Somatic Instructor</span>
+  <span>TP. Hồ Chí Minh</span>
+</footer>
+
+</body>
+</html>
