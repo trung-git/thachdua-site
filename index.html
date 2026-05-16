@@ -26,7 +26,7 @@
 <section class="hero">
   <div class="hero-bg" style="background-image:url('images/2aoboqwjpbpxuohyoxawbfhjyfrezbrump8bomac4.jpg');"></div>
   <div class="hero-text">
-    <span class="eyebrow" style="color:rgba(255,255,255,0.6);">Yoga · Movement · Somatic — TP. Hồ Chí Minh</span>
+    <span class="eyebrow">Yoga · Movement · Somatic — TP. Hồ Chí Minh</span>
     <h1 class="hero-h1">
       Welcome to<br>
       <em>Thạch Dừa</em><br>
@@ -139,7 +139,7 @@
             <div class="testi-name">Lê Phương Anh</div>
             <div class="testi-sub">Small Group · TP.HCM</div>
           </div>
-          <div class="testi-item" style="visibility:hidden;"></div>
+          <div class="testi-item" style="visibility:hidden;" aria-hidden="true"></div>
         </div>
 
       </div>
@@ -156,7 +156,7 @@
 <section class="cta-strip">
   <h2 class="section-title">Ready to start your wellness journey?</h2>
   <p class="cta-strip-sub">Đặt buổi học thử miễn phí — không cam kết, không áp lực.<br>Thảo sẽ liên hệ trong vòng 24 giờ.</p>
-  <form class="cta-form" onsubmit="window.location='mailto:thachdua29@gmail.com?subject=Đặt lịch học thử';return false;">
+  <form class="cta-form" onsubmit="var e=this.querySelector('input').value;window.location='mailto:thachdua29@gmail.com?subject=Đặt lịch học thử&body=Email của tôi: '+encodeURIComponent(e);return false;">
     <input class="cta-input" type="email" placeholder="Email của bạn…" required>
     <button class="cta-submit" type="submit">Start Today</button>
   </form>
@@ -184,7 +184,7 @@
     <div class="footer-col">
       <div class="footer-col-title">Contact Us</div>
       <a href="mailto:thachdua29@gmail.com">thachdua29@gmail.com</a>
-      <a href="tel:0703786631">0703 786 631</a>
+      <a href="tel:+84703786631">0703 786 631</a>
     </div>
   </div>
   <div class="footer-copy">© 2025 Thạch Dừa Studio · TP. Hồ Chí Minh</div>

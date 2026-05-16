@@ -89,6 +89,7 @@ section { padding: 96px 5vw; }
   transition: color 150ms;
 }
 .nav-links a:hover { color: var(--charcoal); }
+.nav-current { color: var(--charcoal) !important; font-weight: 500 !important; }
 .nav-cta {
   background: var(--taupe); color: var(--white);
   padding: 10px 22px; border-radius: 9999px;
@@ -146,7 +147,8 @@ section { padding: 96px 5vw; }
   background: rgba(0,0,0,0.45);
 }
 .page-banner-text { position: relative; z-index: 1; }
-.page-banner-text .eyebrow { color: rgba(255,255,255,0.6); }
+.page-banner-text .eyebrow,
+.hero-text .eyebrow { color: rgba(255,255,255,0.6); }
 .page-banner-text .section-title { color: var(--white); margin-bottom: 0; }
 
 /* ── SERVICE CARDS ── */
