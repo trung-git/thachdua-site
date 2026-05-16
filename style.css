@@ -59,7 +59,7 @@ body {
   margin: 0 auto;
   padding: 0 5vw;
 }
-section { padding: 88px 5vw; }
+section { padding: 96px 5vw; }
 
 /* ── NAV ── */
 .nav {
@@ -215,7 +215,7 @@ section { padding: 88px 5vw; }
 }
 .testi-stars { color: var(--taupe); font-size: 14px; letter-spacing: 3px; margin-bottom: 14px; }
 .testi-quote {
-  font-size: 14px; font-style: italic; color: #555;
+  font-size: 14px; font-style: italic; color: var(--muted);
   line-height: 1.85; margin-bottom: 20px;
 }
 .testi-name { font-size: 13px; font-weight: 600; color: var(--charcoal); }
@@ -246,7 +246,7 @@ section { padding: 88px 5vw; }
 .cta-submit {
   background: var(--white); color: var(--taupe);
   padding: 12px 22px; border-radius: 9999px; border: none;
-  font-size: 12px; font-weight: 700; font-family: inherit;
+  font-size: 12px; font-weight: 600; font-family: inherit;
   cursor: pointer; white-space: nowrap; transition: opacity 200ms;
 }
 .cta-submit:hover { opacity: 0.88; }
@@ -271,7 +271,7 @@ section { padding: 88px 5vw; }
 .price-amount span { font-size: 13px; color: var(--muted); font-weight: 400; }
 .price-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
 .price-features {
-  list-style: none; font-size: 13px; color: #666; line-height: 2; margin-bottom: 24px;
+  list-style: none; font-size: 13px; color: var(--muted); line-height: 2; margin-bottom: 24px;
 }
 .price-features li::before { content: '✓ '; color: var(--taupe); font-weight: 600; }
 
@@ -334,8 +334,8 @@ section { padding: 88px 5vw; }
   display: inline-block;
   border: 1.5px solid rgba(255,255,255,0.65); color: var(--white);
   padding: 14px 32px; border-radius: 9999px;
-  font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-  backdrop-filter: blur(8px); background: rgba(255,255,255,0.1);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: transparent;
   transition: background 200ms;
 }
 .hero-btn:hover { background: rgba(255,255,255,0.2); }
